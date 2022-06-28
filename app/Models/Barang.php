@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
+
+    // Relasion
+    public function pesanan_detail()
+    {
+        return $this->belongsTo('App\PesananDetail', 'barang_id', 'id');
+    }
 }

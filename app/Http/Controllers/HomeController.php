@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $barangs = Barang::paginate(15);
+        // dd($barangs);
+        return view('home', compact('barangs'));
     }
 }

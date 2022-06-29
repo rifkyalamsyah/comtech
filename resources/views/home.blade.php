@@ -31,7 +31,8 @@
                                 <strong>Keterangan :</strong> <br>
                                 {{ $barang->keterangan }}
                             </p>
-                            <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
+                            <a href="{{ url('pesan') }}/{{ $barang->id }}" class="btn btn-primary"><i
+                                    class="fa fa-shopping-cart"></i> Pesan</a>
                         </div>
                     </div>
                 </div>

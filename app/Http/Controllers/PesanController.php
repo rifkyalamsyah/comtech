@@ -6,8 +6,11 @@ use App\Models\Barang;
 use App\Models\Pesanan;
 use App\Models\PesananDetail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PesanController extends Controller
 {
@@ -80,6 +83,7 @@ class PesanController extends Controller
         $pesanan->jumlah_harga = $pesanan->jumlah_harga + $barang->harga * $request->jumlah_pesan;
         $pesanan->update();
 
+        Alert::success('Success', 'Pesanan Berhasil Masuk Keranjang');
         return redirect('home');
     }
 }

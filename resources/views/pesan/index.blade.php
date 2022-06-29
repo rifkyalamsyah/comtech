@@ -43,23 +43,19 @@
                                             <td>:</td>
                                             <td>{{ $barang->harga }}</td>
                                         </tr>
-                                        <form action="" method="POST">
-                                            <tr>
-                                                <td>Jumlah Pesan</td>
-                                                <td>:</td>
-                                                <td>
-                                                    <input type="text" name="jumlah_pesan" class="form-control"
-                                                        required="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <button type="submit" class="btn btn-primary"><i
-                                                            class="fa fa-shopping-cart"></i> Masukan keranjang</button>
-                                                </td>
-                                            </tr>
+                                        <form method="POST" action="{{ url('pesan') }}/{{ $barang->id }}" >
+
+                                            @csrf
+                                            
+                                            <td>Jumlah Pesan</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="number" name="jumlah_pesan" class="form-control"
+                                                    required="">
+
+                                            <button type="submit" class="btn btn-primary mt-2"><i
+                                                    class="fa fa-shopping-cart"></i> Masukan keranjang</button>
+                                            </td>
                                         </form>
                                     </tbody>
                                 </table>

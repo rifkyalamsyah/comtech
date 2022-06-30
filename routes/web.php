@@ -26,3 +26,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('pesan/{id}', [PesanController::class, 'index'] );
 
 Route::post('pesan/{id}', [PesanController::class, 'pesan'] );
+
+Route::get('check-out', [PesanController::class, 'check_out'] );
+Route::delete('check-out/{id}', [PesanController::class, 'delete']);
+
+Route::get('konfirmasi-check-out', [PesanController::class, 'konfirmasi'] );

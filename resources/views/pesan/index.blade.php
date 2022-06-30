@@ -22,7 +22,8 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="{{ url('uploads') }}/{{ $barang->gambar }}" width="400" alt="Barang">
+                                <img src="{{ url('uploads') }}/{{ $barang->gambar }}" class="img-thumbnail"
+                                    alt="Barang">
                             </div>
                             <div class="col-md-6 mt-5">
                                 <h2>{{ $barang->nama_barang }}</h2>
@@ -41,20 +42,20 @@
                                         <tr>
                                             <td>Keterangan</td>
                                             <td>:</td>
-                                            <td>{{ $barang->harga }}</td>
+                                            <td>{{ $barang->keterangan }}</td>
                                         </tr>
-                                        <form method="POST" action="{{ url('pesan') }}/{{ $barang->id }}" >
+                                        <form method="POST" action="{{ url('pesan') }}/{{ $barang->id }}">
 
                                             @csrf
-                                            
+
                                             <td>Jumlah Pesan</td>
                                             <td>:</td>
                                             <td>
                                                 <input type="number" name="jumlah_pesan" class="form-control"
                                                     required="">
 
-                                            <button type="submit" class="btn btn-primary mt-2"><i
-                                                    class="fa fa-shopping-cart"></i> Masukan keranjang</button>
+                                                <button type="submit" class="btn btn-primary mt-2"><i
+                                                        class="fa fa-shopping-cart"></i> Masukan keranjang</button>
                                             </td>
                                         </form>
                                     </tbody>
@@ -66,4 +67,5 @@
             </div>
         </div>
     </div>
+    @include('sweetalert::alert')
 @endsection

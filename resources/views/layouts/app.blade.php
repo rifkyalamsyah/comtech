@@ -23,6 +23,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -47,6 +48,24 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <?php
+                            $pesanan_utama = App\Models\Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+                            if (!empty($pesanan_utama)) {
+                                $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
+                            }
+                            ?>
+
+                            <a class="nav-link" href="{{ url('check-out') }}">
+                                <i class="fa fa-shopping-cart"></i>
+                                @if(!empty($notif))
+                                <span class="badge bg-danger">{{ $notif }}</span></a>
+                                @else
+                                <span class="badge bg-secondary invisible">0</span></a>
+                                @endif
+
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -73,7 +92,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -91,6 +109,7 @@
     </div>
 
     @include('sweetalert::alert')
+
 </body>
 
 </html>

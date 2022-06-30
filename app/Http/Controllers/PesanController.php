@@ -36,6 +36,8 @@ class PesanController extends Controller
 
         // validasi apakah melebihi stok
         if ($request->jumlah_pesan > $barang->stok) {
+
+            Alert::warning('Warning', 'Jumlah pesanan melebihi jumlah stok');
             return redirect('pesan/' . $id);
         }
 
@@ -84,6 +86,56 @@ class PesanController extends Controller
         $pesanan->update();
 
         Alert::success('Success', 'Pesanan Berhasil Masuk Keranjang');
+        return redirect('check-out');
+    }
+
+
+    public function check_out()
+    {
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        // validasi
+        if (!empty($pesanan)) {
+            $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+            return view('pesan.check_out', compact('pesanan', 'pesanan_details'));
+        } else {
+            Alert::warning('Pesanan Kosong', 'Anda Belum Memesan Barang');
+            return view('pesan.check_out', compact('pesanan'));
+        }
+    }
+
+
+    public function delete($id)
+    {
+        $pesanan_detail = PesananDetail::where('id', $id)->first();
+
+        $pesanan = Pesanan::where('id', $pesanan_detail->pesanan_id)->first();
+        $pesanan->jumlah_harga = $pesanan->jumlah_harga - $pesanan_detail->jumlah_harga;
+        $pesanan->update();
+
+        $pesanan_detail->delete();
+        // sweet alert
+        Alert::error('Delete', 'Pesanan Berhasil Dihapus');
+        return redirect('check-out');
+    }
+
+
+    public function konfirmasi()
+    {
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+
+        $pesanan_id = $pesanan->id;
+        $pesanan->status = 1;
+        $pesanan->update();
+
+        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan_id)->get();
+        foreach ($pesanan_details as $pesanan_detail) {
+            $barang = Barang::where('id', $pesanan_detail->barang_id)->first();
+            $barang->stok = $barang->stok - $pesanan_detail->jumlah;
+            $barang->update();
+        }
+
+        // sweet alert
+        Alert::success('Success', 'Pesanan Berhasil Check Out');
         return redirect('home');
     }
 }

@@ -12,12 +12,12 @@ class PesananDetail extends Model
     // Relasion
     public function barang()
     {
-        return $this->belongsTo('App\Barang', 'barang_id', 'id');
+        return $this->belongsTo('App\Models\Barang', 'barang_id', 'id');
     }
 
     // Relasion
     public function pesanan()
     {
-        return $this->belongsTo('App\PesananDetail', 'pesanan_id', 'id');
+        return $this->belongsTo('App\Models\PesananDetail', 'pesanan_id', 'id');
     }
 }

@@ -47,27 +47,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <?php
-                            // Bug
-                            $pesanan_utama = App\Models\Pesanan::where('user_id', Auth::user()->id)
-                                ->where('status', 0)
-                                ->first();
 
-                            if (!empty($pesanan_utama)) {
-                                $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
-                            }
-                            ?>
-
-                            <a class="nav-link position-relative" href="{{ url('check-out') }}">
-                                <i class="fa fa-shopping-cart"></i>
-                                @if (!empty($notif))
-                                    <span class="badge bg-danger">{{ $notif }}</span>
-                            </a>
-                        @else
-                            <span class="badge bg-secondary invisible">0</span></a>
-                            @endif
-                        </li>
 
                         <!-- Authentication Links -->
                         @guest
@@ -83,6 +63,28 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <?php
+
+                                $pesanan_utama = App\Models\Pesanan::where('user_id', Auth::user()->id)
+                                    ->where('status', 0)
+                                    ->first();
+
+                                if (!empty($pesanan_utama)) {
+                                    $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
+                                }
+                                ?>
+
+                                <a class="nav-link position-relative" href="{{ url('check-out') }}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    @if (!empty($notif))
+                                        <span class="badge bg-danger">{{ $notif }}</span>
+                                </a>
+                            @else
+                                <span class="badge bg-secondary invisible">0</span></a>
+                                @endif
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

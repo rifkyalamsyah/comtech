@@ -49,6 +49,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <?php
+                            // Bug
                             $pesanan_utama = App\Models\Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
                             if (!empty($pesanan_utama)) {

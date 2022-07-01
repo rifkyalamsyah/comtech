@@ -33,53 +33,57 @@
                             <div class="alert alert-secondary" role="alert">
                                 Tanggal Pesan: <strong>{{ $pesanan->tanggal }}</strong>
                             </div>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Gambar</th>
-                                        <th>Nama Barang</th>
-                                        <th>Harga</th>
-                                        <th class="text-end">Jumlah</th>
-                                        <th class="text-end">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no = 1; ?>
-                                    @foreach ($pesanan_details as $pesanan_detail)
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>
-                                                <img src="{{ url('uploads') }}/{{ $pesanan_detail->barang->gambar }}"
-                                                    width="100" alt="barang">
-                                            </td>
-                                            <td>{{ $pesanan_detail->barang->nama_barang }}</td>
-                                            <td align="left">Rp. {{ number_format($pesanan_detail->barang->harga) }}
-                                            </td>
-                                            <td align="right">{{ $pesanan_detail->jumlah }} Barang</td>
-                                            <td align="right">Rp. {{ number_format($pesanan_detail->jumlah_harga) }}
+                                            <th>No</th>
+                                            <th>Gambar</th>
+                                            <th>Nama Barang</th>
+                                            <th>Harga</th>
+                                            <th class="text-end">Jumlah</th>
+                                            <th class="text-end">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($pesanan_details as $pesanan_detail)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>
+                                                    <img src="{{ url('uploads') }}/{{ $pesanan_detail->barang->gambar }}"
+                                                        width="100" alt="barang">
+                                                </td>
+                                                <td>{{ $pesanan_detail->barang->nama_barang }}</td>
+                                                <td align="left">Rp. {{ number_format($pesanan_detail->barang->harga) }}
+                                                </td>
+                                                <td align="right">{{ $pesanan_detail->jumlah }} Barang</td>
+                                                <td align="right">Rp. {{ number_format($pesanan_detail->jumlah_harga) }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                        <tr>
+                                            <td colspan="5" align="right"><strong>Total Harga : </strong></td>
+                                            <td align="right"><strong>Rp.
+                                                    {{ number_format($pesanan->jumlah_harga) }}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" align="right"><strong>Kode Unik : </strong></td>
+                                            <td align="right"><strong># {{ number_format($pesanan->kode) }}</strong>
                                             </td>
                                         </tr>
-                                    @endforeach
-
-                                    <tr>
-                                        <td colspan="5" align="right"><strong>Total Harga : </strong></td>
-                                        <td align="right"><strong>Rp.
-                                                {{ number_format($pesanan->jumlah_harga) }}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5" align="right"><strong>Kode Unik : </strong></td>
-                                        <td align="right"><strong># {{ number_format($pesanan->kode) }}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5" align="right"><strong>Total Yang Harus Ditransfer : </strong>
-                                        </td>
-                                        <td align="right"><strong>Rp.
-                                                {{ number_format($pesanan->jumlah_harga + $pesanan->kode) }}</strong>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        <tr>
+                                            <td colspan="5" align="right"><strong>Total Yang Harus Ditransfer :
+                                                </strong>
+                                            </td>
+                                            <td align="right"><strong>Rp.
+                                                    {{ number_format($pesanan->jumlah_harga + $pesanan->kode) }}</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         @endif
                     </div>
                 </div>

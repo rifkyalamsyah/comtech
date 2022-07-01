@@ -18,30 +18,33 @@
                 <div class="card">
                     <div class="card-body">
                         <h4><i class="fa fa-user"></i> My Profile</h4>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Nama</td>
-                                    <td width="10">:</td>
-                                    <td>{{ $user->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td>{{ $user->email }}</td>
-                                </tr>
-                                <tr>
-                                    <td>No. Hp</td>
-                                    <td>:</td>
-                                    <td>{{ $user->no_hp }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Alamat</td>
-                                    <td>:</td>
-                                    <td>{{ $user->alamat }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td width="10">:</td>
+                                        <td>{{ $user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td>{{ $user->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>No. Hp</td>
+                                        <td>:</td>
+                                        <td>{{ $user->no_hp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat</td>
+                                        <td>:</td>
+                                        <td>{{ $user->alamat }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>

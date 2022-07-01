@@ -47,7 +47,7 @@
                                                     @csrf
                                                     {{ method_field('DELETE') }}
 
-                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus data?')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -59,7 +59,7 @@
                                         <td colspan="4" align="right"><strong>Total Harga:</strong></td>
                                         <td><strong>Rp. {{ number_format($pesanan->jumlah_harga) }}</strong></td>
                                         <td>
-                                            <a href="{{ url('konfirmasi-check-out') }}" class="btn btn-success">
+                                            <a href="{{ url('konfirmasi-check-out') }}" class="btn btn-success" onclick="return confirm('Anda yakin check out?')">
                                                 <i class="fa fa-shopping-cart"></i> Check Out
                                             </a>
                                         </td>

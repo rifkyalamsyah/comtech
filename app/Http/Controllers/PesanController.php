@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Pesanan;
-use App\Models\PesananDetail;
 use Illuminate\Http\Request;
+use App\Models\PesananDetail;
 use Illuminate\Support\Carbon;
 use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -121,6 +122,19 @@ class PesanController extends Controller
 
     public function konfirmasi()
     {
+        // validasi
+        $user = User::where('id', Auth::user()->id)->first();
+
+        if (empty($user->no_hp)) {
+            Alert::warning('Warning', 'Harap Lengkapi Identitas Anda');
+            return redirect('profile');
+        }
+
+        if (empty($user->alamat)) {
+            Alert::warning('Warning', 'Harap Lengkapi Identitas Anda');
+            return redirect('profile');
+        }
+
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
         $pesanan_id = $pesanan->id;

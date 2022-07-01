@@ -23,7 +23,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -51,19 +50,20 @@
                         <li class="nav-item">
                             <?php
                             $pesanan_utama = App\Models\Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+
                             if (!empty($pesanan_utama)) {
                                 $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
                             }
                             ?>
 
-                            <a class="nav-link" href="{{ url('check-out') }}">
+                            <a class="nav-link position-relative" href="{{ url('check-out') }}">
                                 <i class="fa fa-shopping-cart"></i>
-                                @if(!empty($notif))
-                                <span class="badge bg-danger">{{ $notif }}</span></a>
-                                @else
-                                <span class="badge bg-secondary invisible">0</span></a>
-                                @endif
-
+                                @if (!empty($notif))
+                                    <span class="badge bg-danger">{{ $notif }}</span>
+                            </a>
+                        @else
+                            <span class="badge bg-secondary invisible">0</span></a>
+                            @endif
                         </li>
 
                         <!-- Authentication Links -->
@@ -87,6 +87,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('profile') }}">
+                                        Profile
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

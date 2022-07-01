@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PesanController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('pesan/{id}', [PesanController::class, 'index'] );
+Route::get('pesan/{id}', [PesanController::class, 'index']);
 
-Route::post('pesan/{id}', [PesanController::class, 'pesan'] );
+// pesan barang
+Route::post('pesan/{id}', [PesanController::class, 'pesan']);
 
-Route::get('check-out', [PesanController::class, 'check_out'] );
+// Check out
+Route::get('check-out', [PesanController::class, 'check_out']);
 Route::delete('check-out/{id}', [PesanController::class, 'delete']);
 
-Route::get('konfirmasi-check-out', [PesanController::class, 'konfirmasi'] );
+// Konfirmasi check out
+Route::get('konfirmasi-check-out', [PesanController::class, 'konfirmasi']);
+
+// Profile
+Route::get('profile', [ProfileController::class, 'index']);
+// update profile
+Route::post('profile', [ProfileController::class, 'update']);

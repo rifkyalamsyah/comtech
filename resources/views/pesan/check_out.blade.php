@@ -19,11 +19,15 @@
                     <div class="card-body">
                         <h3><i class="fa fa-shopping-cart"></i> Check Out</h3>
                         @if (!empty($pesanan))
-                            <p align="right">Tanggal Pesan: {{ $pesanan->tanggal }}</p>
+                            <div class="alert alert-secondary" role="alert">
+                                Tanggal Pesan : <strong>{{ $pesanan->tanggal }}</strong>
+                            </div>
+
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Gambar</th>
                                         <th>Nama Barang</th>
                                         <th>Harga</th>
                                         <th>Jumlah</th>
@@ -36,6 +40,10 @@
                                     @foreach ($pesanan_details as $pesanan_detail)
                                         <tr>
                                             <td>{{ $no++ }}</td>
+                                            <td>
+                                                <img src="{{ url('uploads') }}/{{ $pesanan_detail->barang->gambar }}"
+                                                    width="100" alt="barang">
+                                            </td>
                                             <td>{{ $pesanan_detail->barang->nama_barang }}</td>
                                             <td align="left">Rp. {{ number_format($pesanan_detail->barang->harga) }}
                                             </td>
@@ -47,8 +55,9 @@
                                                     @csrf
                                                     {{ method_field('DELETE') }}
 
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus data?')">
-                                                        <i class="fa fa-trash"></i>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Anda yakin ingin menghapus data?')">
+                                                        <i class="fa fa-trash"></i> Delete
                                                     </button>
                                                 </form>
                                             </td>
@@ -56,10 +65,11 @@
                                     @endforeach
 
                                     <tr>
-                                        <td colspan="4" align="right"><strong>Total Harga:</strong></td>
+                                        <td colspan="5" align="right"><strong>Total Harga:</strong></td>
                                         <td><strong>Rp. {{ number_format($pesanan->jumlah_harga) }}</strong></td>
                                         <td>
-                                            <a href="{{ url('konfirmasi-check-out') }}" class="btn btn-success" onclick="return confirm('Anda yakin check out?')">
+                                            <a href="{{ url('konfirmasi-check-out') }}" class="btn btn-success"
+                                                onclick="return confirm('Anda yakin check out?')">
                                                 <i class="fa fa-shopping-cart"></i> Check Out
                                             </a>
                                         </td>

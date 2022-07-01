@@ -53,7 +53,7 @@ class PesanController extends Controller
             $pesanan->tanggal = $tanggal;
             $pesanan->status = 0;
             $pesanan->jumlah_harga = 0;
-            $pesanan->jumlah_harga = 0;
+            $pesanan->kode = mt_rand(100, 999);
             $pesanan->save();
         }
 
@@ -150,6 +150,6 @@ class PesanController extends Controller
 
         // sweet alert
         Alert::success('Success', 'Pesanan Berhasil Check Out');
-        return redirect('home');
+        return redirect('history/'. $pesanan_id);
     }
 }

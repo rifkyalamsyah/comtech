@@ -50,7 +50,9 @@
                         <li class="nav-item">
                             <?php
                             // Bug
-                            $pesanan_utama = App\Models\Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+                            $pesanan_utama = App\Models\Pesanan::where('user_id', Auth::user()->id)
+                                ->where('status', 0)
+                                ->first();
 
                             if (!empty($pesanan_utama)) {
                                 $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
@@ -90,6 +92,10 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('profile') }}">
                                         Profile
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ url('history') }}">
+                                        Riwayat Pemesanan
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

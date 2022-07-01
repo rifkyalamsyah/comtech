@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -23,7 +24,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('pesan/{id}', [PesanController::class, 'index']);
 
 // pesan barang
@@ -40,3 +43,8 @@ Route::get('konfirmasi-check-out', [PesanController::class, 'konfirmasi']);
 Route::get('profile', [ProfileController::class, 'index']);
 // update profile
 Route::post('profile', [ProfileController::class, 'update']);
+
+// history
+Route::get('history', [HistoryController::class, 'index']);
+// detail history
+Route::get('history/{id}', [HistoryController::class, 'detail']);

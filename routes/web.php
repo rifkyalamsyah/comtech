@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\A_DashboardController;
+use App\Http\Controllers\A_BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +50,16 @@ Route::post('profile', [ProfileController::class, 'update']);
 Route::get('history', [HistoryController::class, 'index']);
 // detail history
 Route::get('history/{id}', [HistoryController::class, 'detail']);
+
+//Admin area -----------------------------------------------------------------------------
+
+// Dashboard
+Route::get('admin/dashboard', [A_DashboardController::class, 'index']);
+
+//Barang
+Route::get('admin/tambah-barang', [A_BarangController::class, 'create'])->name('barang');
+Route::post('admin/tambah-barang', [A_BarangController::class, 'store']);
+Route::get('admin/barang', [A_BarangController::class, 'list'])->name('barang');
+Route::get('admin/barang/{id}', [A_BarangController::class, 'edit'])->name('edit_barang');
+Route::post('admin/barang/{id}', [A_BarangController::class, 'update']);
+Route::delete('admin/barang/{id}', [A_BarangController::class, 'delete']);

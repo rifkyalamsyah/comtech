@@ -150,6 +150,6 @@ class PesanController extends Controller
 
         // sweet alert
         Alert::success('Success', 'Pesanan Berhasil Check Out');
-        return redirect('history/'. $pesanan_id);
+        return redirect('history/' . $pesanan_id);
     }
 }

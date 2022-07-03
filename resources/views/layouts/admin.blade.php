@@ -51,10 +51,10 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">Comtech</a>
+                        <a href="{{ url('admin/dashboard') }}">Comtech</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">CT</a>
+                        <a href="{{ url('admin/dashboard') }}">CT</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a class="nav-link "
@@ -86,7 +86,7 @@
                                         Barang</a></li>
                             </ul>
                         </li>
-                        <li><a class="nav-link" href="blank.html"><i class="fas fa-cart-shopping"></i>
+                        <li><a class="nav-link" href="#"><i class="fas fa-cart-shopping"></i>
                                 <span>Pesanan</span></a>
                         </li>
                     </ul>
@@ -120,6 +120,9 @@
     <script src="{{ url('js/stisla/scripts.js') }}"></script>
     <script src="{{ url('js/stisla/custom.js') }}"></script>
     <script src="{{ url('js/stisla/page/index-0.js') }}"></script>
+
+    <!-- JS Libraies -->
+
 </body>
 
 </html>

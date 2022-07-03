@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('content')
+<div class="text-left pb-4">
+    <a href="{{ url('admin/list-admin') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>
+        Kembali</a>
+</div>
     <div class="card">
         <div class="card-body">
-            <div class="text-right">
-                <a href="{{ url('admin/list-admin') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>
-                    Kembali</a>
-            </div>
             <form method="POST" action="{{ url('admin/list-admin', $user->id) }}">
                 @csrf
 

@@ -21,7 +21,7 @@
                                     <td><img src="{{ asset('uploads/' . $barang->gambar) }}"
                                             alt="{{ $barang->nama_barang }}" width="100px"></td>
                                     <td>{{ $barang->nama_barang }}</td>
-                                    <td>{{ $barang->harga }}</td>
+                                    <td>Rp. {{ number_format($barang->harga) }}</td>
                                     <td>{{ $barang->stok }}</td>
                                     <td>{{ $barang->keterangan }}</td>
                                     <td>

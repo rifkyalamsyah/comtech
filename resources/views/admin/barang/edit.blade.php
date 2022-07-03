@@ -3,7 +3,6 @@
     <div class="card">
         <div class="card-body">
             <div class="text-right">
-
                 <a href="{{ url('admin/barang') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>
                     Kembali</a>
             </div>

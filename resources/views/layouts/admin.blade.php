@@ -14,13 +14,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Template CSS -->
-    @if (Route::currentRouteName() == 'edit_barang')
-        <link rel="stylesheet" href="../../css/stisla/style.css">
-        <link rel="stylesheet" href="../../css/stisla/components.css">
-    @else
-        <link rel="stylesheet" href="../css/stisla/style.css">
-        <link rel="stylesheet" href="../css/stisla/components.css">
-    @endif
+    <link rel="stylesheet" href="{{ url('css/stisla/style.css') }}">
+    <link rel="stylesheet" href="{{ url('css/stisla/component.css') }}">
 </head>
 
 <body>
@@ -66,12 +61,16 @@
                                 href="{{ url('admin/dashboard') }}"><i class="fas fa-tachometer-alt"></i>
                                 <span>Dashboard</span></a></li>
                         <li class="menu-header">Admin</li>
-                        <li class="nav-item dropdown">
+                        <li
+                            class="nav-item dropdown {{ Route::currentRouteName() == 'member' || 'admin' ? 'active' : '' }}">
                             <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
                                     class="fas fa-user"></i> <span>Pengguna</span></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a class="nav-link " href="layout-default.html">Admin</a></li>
-                                <li><a class="nav-link" href="layout-transparent.html">Member</a></li>
+                                <li class="{{ Route::currentRouteName() == 'admin' ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ url('admin/list-admin') }}">Admin</a>
+                                </li>
+                                <li class="{{ Route::currentRouteName() == 'member' ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ url('admin/list-member') }}">Member</a></li>
                             </ul>
                         <li class="nav-item dropdown {{ Route::currentRouteName() == 'barang' ? 'active' : '' }}">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
@@ -115,17 +114,10 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    @if (Route::currentRouteName() == 'edit_barang')
-        <script src="../../js/stisla/stisla.js"></script>>
-        <script src="../../js/stisla/scripts.js"></script>
-        <script src="../../js/stisla/custom.js"></script>
-        <script src="../../js/stisla/page/index-0.js"></script>
-    @else
-        <script src="../js/stisla/stisla.js"></script>
-        <script src="../js/stisla/scripts.js"></script>
-        <script src="../js/stisla/custom.js"></script>
-        <script src="../js/stisla/page/index-0.js"></script>
-    @endif
+    <script src="{{ url('js/stisla/stisla.js') }}"></script>
+    <script src="{{ url('js/stisla/scripts.js') }}"></script>
+    <script src="{{ url('js/stisla/custom.js') }}"></script>
+    <script src="{{ url('js/stisla/page/index-0.js') }}"></script>
 </body>
 
 </html>

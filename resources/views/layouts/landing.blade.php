@@ -29,6 +29,7 @@
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
                 </ul>
 
                 @auth
@@ -41,8 +42,10 @@
                                 href="{{ url('home') }}"> Shop</a></li>
                     @endif
                 @else
-                    <li class="btn btn-primary btn-sm rounded-pill mx-3"><a class="nav-link text-white" href="/login">Get
-                            Started!</a></li>
+                    <li class="nav-item btn btn-outline-primary btn-sm rounded-pill mx-3"><a class="nav-link"
+                            href="/register">Register</a></li>
+                    <li class="btn btn-primary btn-sm rounded-pill"><a class="nav-link text-white"
+                            href="/login">Login</a></li>
                 @endauth
             </div>
         </div>

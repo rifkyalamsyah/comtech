@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\A_DashboardController;
 use App\Http\Controllers\A_BarangController;
 use App\Http\Controllers\A_PenggunaController;
+use App\Http\Controllers\A_ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,12 @@ use App\Http\Controllers\A_PenggunaController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+//logout
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/login');
 });
 
 Auth::routes();
@@ -54,12 +61,16 @@ Route::get('history/{id}', [HistoryController::class, 'detail']);
 
 //Admin area -----------------------------------------------------------------------------
 
+//profile
+Route::get('admin/profile', [A_ProfileController::class, 'index']);
+Route::post('admin/profile', [A_ProfileController::class, 'update']);
+
 // Dashboard
-Route::get('admin/dashboard', [A_DashboardController::class, 'index']);
+Route::get('admin/dashboard', [A_DashboardController::class, 'index'])->name('adminDashboard')->middleware('isAdmin');
 
 
 //Pengguna (Admin)
-Route::get('admin/list-admin', [A_PenggunaController::class, 'admin'])->name('admin');
+Route::get('admin/list-admin', [A_PenggunaController::class, 'admin'])->name('admin');;
 Route::get('admin/tambah-admin', [A_PenggunaController::class, 'tambah_admin'])->name('admin');
 Route::post('admin/tambah-admin', [A_PenggunaController::class, 'add_admin'])->name('admin');
 Route::get('admin/list-admin/{id}', [A_PenggunaController::class, 'edit_admin'])->name('admin');

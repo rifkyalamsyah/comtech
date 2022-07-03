@@ -7,27 +7,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class ProfileController extends Controller
+class A_ProfileController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('isMember');
+        $this->middleware('isAdmin');
     }
 
     public function index()
     {
-        $user = User::where('id', Auth::user()->id)->first();
-
-        return view('profile.index', compact('user'));
+        $data =
+            [
+                'title' => 'Profile',
+            ];
+        $user = User::find(auth()->user()->id);
+        return view('admin.profile.index', compact('user'), $data);
     }
-
 
     public function update(Request $request)
     {
-        // dd($request);
 
 
         $this->validate($request, [
@@ -46,8 +46,6 @@ class ProfileController extends Controller
 
         $user->update();
 
-        // sweet alert
-        Alert::success('Success', 'Data Berhasil di Update');
-        return redirect('profile');
+        return redirect('admin/profile');
     }
 }

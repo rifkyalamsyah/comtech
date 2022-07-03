@@ -37,11 +37,11 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="features-profile.html" class="dropdown-item has-icon">
+                            <a href="{{ url('admin/profile') }}" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item has-icon text-danger">
+                            <a href="{{ url('logout') }}" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
                         </div>
@@ -59,10 +59,11 @@
                     <ul class="sidebar-menu">
                         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a class="nav-link "
                                 href="{{ url('admin/dashboard') }}"><i class="fas fa-tachometer-alt"></i>
-                                <span>Dashboard</span></a></li>
+                                <span>Dashboard</span></a>
+                        </li>
                         <li class="menu-header">Admin</li>
                         <li
-                            class="nav-item dropdown {{ Route::currentRouteName() == 'member' || 'admin' ? 'active' : '' }}">
+                            class="nav-item dropdown {{ Route::currentRouteName() == 'admin' || Route::currentRouteName() == 'member' ? 'active' : '' }}">
                             <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
                                     class="fas fa-user"></i> <span>Pengguna</span></a>
                             <ul class="dropdown-menu">
@@ -72,6 +73,7 @@
                                 <li class="{{ Route::currentRouteName() == 'member' ? 'active' : '' }}"><a
                                         class="nav-link" href="{{ url('admin/list-member') }}">Member</a></li>
                             </ul>
+                        </li>
                         <li class="nav-item dropdown {{ Route::currentRouteName() == 'barang' ? 'active' : '' }}">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Barang</span></a>

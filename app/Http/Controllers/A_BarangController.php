@@ -11,6 +11,7 @@ class A_BarangController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('isAdmin');
     }
 
     public function create()

@@ -13,6 +13,7 @@ class HistoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('isMember');
     }
 
     public function index()

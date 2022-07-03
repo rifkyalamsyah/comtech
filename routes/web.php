@@ -10,6 +10,7 @@ use App\Http\Controllers\A_DashboardController;
 use App\Http\Controllers\A_BarangController;
 use App\Http\Controllers\A_PenggunaController;
 use App\Http\Controllers\A_ProfileController;
+use App\Http\Controllers\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,7 @@ use App\Http\Controllers\A_ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 //logout
 Route::get('logout', function () {
@@ -35,7 +34,7 @@ Route::get('logout', function () {
 Auth::routes();
 
 // home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('pesan/{id}', [PesanController::class, 'index']);
 

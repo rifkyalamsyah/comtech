@@ -19,9 +19,13 @@ class ProfileController extends Controller
 
     public function index()
     {
+        $data =
+            [
+                'title' => 'Profile',
+            ];
         $user = User::where('id', Auth::user()->id)->first();
 
-        return view('profile.index', compact('user'));
+        return view('profile.index', compact('user'), $data);
     }
 
 

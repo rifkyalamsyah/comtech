@@ -25,7 +25,11 @@ class PesanController extends Controller
     public function index($id)
     {
         $barang = Barang::where('id', $id)->first();
-        return view('pesan.index', compact('barang'));
+        $data =
+            [
+                'produk' => $barang->nama_barang
+            ];
+        return view('pesan.index', compact('barang'), $data);
     }
 
 
@@ -94,14 +98,18 @@ class PesanController extends Controller
 
     public function check_out()
     {
+        $data =
+            [
+                'title' => 'Check Out'
+            ];
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
         // validasi
         if (!empty($pesanan)) {
             $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
-            return view('pesan.check_out', compact('pesanan', 'pesanan_details'));
+            return view('pesan.check_out', compact('pesanan', 'pesanan_details'), $data);
         } else {
             Alert::warning('Pesanan Kosong', 'Anda Belum Memesan Barang');
-            return view('pesan.check_out', compact('pesanan'));
+            return view('pesan.check_out', compact('pesanan'), $data);
         }
     }
 

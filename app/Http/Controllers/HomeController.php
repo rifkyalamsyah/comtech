@@ -26,9 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $data =
+            [
+                'title' => 'Home',
+            ];
 
         $barangs = Barang::paginate(15);
         // dd($barangs);
-        return view('home', compact('barangs'));
+        return view('home', compact('barangs'), $data);
     }
 }

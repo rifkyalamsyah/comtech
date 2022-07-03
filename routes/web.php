@@ -36,7 +36,7 @@ Auth::routes();
 // home
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('pesan/{id}', [PesanController::class, 'index']);
+Route::get('pesan/{id}', [PesanController::class, 'index'])->name('pesan');
 
 // pesan barang
 Route::post('pesan/{id}', [PesanController::class, 'pesan']);

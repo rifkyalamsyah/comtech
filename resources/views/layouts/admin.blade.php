@@ -54,7 +54,7 @@
                         <a href="index.html">Comtech</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">CT</a>
+                        <a href="/">CT</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a class="nav-link "

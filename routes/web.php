@@ -89,25 +89,25 @@ Route::delete('admin/list-member/{id}', [A_PenggunaController::class, 'delete_me
 Route::get('admin/tambah-barang', [A_BarangController::class, 'create'])->name('barang');
 Route::post('admin/tambah-barang', [A_BarangController::class, 'store']);
 Route::get('admin/barang', [A_BarangController::class, 'list'])->name('barang');
-Route::get('admin/barang/{id}', [A_BarangController::class, 'edit']);
+Route::get('admin/barang/{id}', [A_BarangController::class, 'edit'])->name('barang');
 Route::post('admin/barang/{id}', [A_BarangController::class, 'update']);
 Route::delete('admin/barang/{id}', [A_BarangController::class, 'delete']);
 
 //Pesanan
-Route::get('admin/pesanan', [A_PesananController::class, 'index']);
-Route::get('admin/pesanan/{id}', [A_PesananController::class, 'detail']);
+Route::get('admin/pesanan', [A_PesananController::class, 'index'])->name('pesanan');
+Route::get('admin/pesanan/{id}', [A_PesananController::class, 'detail'])->name('pesanan');
 Route::post('admin/pesanan/{id}', [A_PesananController::class, 'konfirmasi']);
 
 //Pesanan Dibayar
-Route::get('admin/pesanan-dibayar', [A_PesananController::class, 'dibayar']);
-Route::get('admin/pesanan-dibayar/{id}', [A_PesananController::class, 'proses_pesanan']);
+Route::get('admin/pesanan-dibayar', [A_PesananController::class, 'dibayar'])->name('dibayar');
+Route::get('admin/pesanan-dibayar/{id}', [A_PesananController::class, 'proses_pesanan'])->name('dibayar');
 Route::post('admin/pesanan-dibayar/{id}', [A_PesananController::class, 'kirim_pesanan']);
 
 //Pesanan Dikirim
-Route::get('admin/pesanan-dikirim', [A_PesananController::class, 'dikirim']);
-Route::get('admin/pesanan-dikirim/{id}', [A_PesananController::class, 'detail_dikirim']);
+Route::get('admin/pesanan-dikirim', [A_PesananController::class, 'dikirim'])->name('dikirim');
+Route::get('admin/pesanan-dikirim/{id}', [A_PesananController::class, 'detail_dikirim'])->name('dikirim');
 
 
 //Pesanan Diterima
-Route::get('admin/pesanan-selesai', [A_PesananController::class, 'selesai']);
-Route::get('admin/pesanan-selesai/{id}', [A_PesananController::class, 'detail_pesanan']);
+Route::get('admin/pesanan-selesai', [A_PesananController::class, 'selesai'])->name('selesai');
+Route::get('admin/pesanan-selesai/{id}', [A_PesananController::class, 'detail_pesanan'])->name('selesai');

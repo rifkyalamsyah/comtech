@@ -81,26 +81,28 @@
                                 <li class="{{ Request::is('admin/tambah-barang') ? 'active' : '' }}"><a
                                         class="nav-link" href="{{ url('admin/tambah-barang') }}">Tambah Barang</a>
                                 </li>
-                                <li class="{{ Request::is('admin/barang') ? 'active' : '' }}"><a class="nav-link"
-                                        href="{{ url('admin/barang') }}">List
+                                <li class="{{ Route::currentRouteName() == 'barang' ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ url('admin/barang') }}">List
                                         Barang</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li
+                            class="nav-item dropdown {{ Route::currentRouteName() == 'pesanan' || Route::currentRouteName() == 'dibayar' || Route::currentRouteName() == 'dikirim' || Route::currentRouteName() == 'selesai' ? 'active' : '' }}">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-cart-shopping"></i> <span>Pesanan</span></a>
                             <ul class="dropdown-menu">
-                                <li class=""><a class="nav-link" href="{{ url('admin/pesanan') }}">Daftar
+                                <li class="{{ Route::currentRouteName() == 'pesanan' ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ url('admin/pesanan') }}">Daftar
                                         Pesanan</a>
                                 </li>
-                                <li class=""><a class="nav-link"
-                                        href="{{ url('admin/pesanan-dibayar') }}">Dibayar</a>
+                                <li class="{{ Route::currentRouteName() == 'dibayar' ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ url('admin/pesanan-dibayar') }}">Dibayar</a>
                                 </li>
-                                <li class=""><a class="nav-link"
-                                        href="{{ url('admin/pesanan-dikirim') }}">Dikirim</a>
+                                <li class="{{ Route::currentRouteName() == 'dikirim' ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ url('admin/pesanan-dikirim') }}">Dikirim</a>
                                 </li>
-                                <li class=""><a class="nav-link"
-                                        href="{{ url('admin/pesanan-selesai') }}">Selesai</a>
+                                <li class="{{ Route::currentRouteName() == 'selesai' ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ url('admin/pesanan-selesai') }}">Selesai</a>
                                 </li>
                             </ul>
                         </li>

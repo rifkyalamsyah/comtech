@@ -31,11 +31,12 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{-- {{ config('app.name', 'Comtech') }} --}}
-                    Comtech
+                    <img class="d-inline-block align-middle mr-2" src="{{ url('img/logo.png') }}" width="45"
+                        alt="logo comtech"> Comtech
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -104,7 +105,9 @@
                                         Riwayat Pemesanan
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ url('logout') }}">
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

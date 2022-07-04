@@ -2,10 +2,6 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <div class="text-right">
-                <a href="{{ url('admin/list-admin') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>
-                    Kembali</a>
-            </div>
             <form method="POST" action="{{ url('admin/tambah-admin') }}">
                 @csrf
 
@@ -43,7 +39,7 @@
                     <label for="no_hp" class="col-md-2 col-form-label text-md-end">No Hp</label>
 
                     <div class="col-md-5">
-                        <input id="no_hp" type="number" class="form-control @error('no_hp') is-invalid @enderror"
+                        <input id="no_hp" type="text" class="form-control @error('no_hp') is-invalid @enderror"
                             name="no_hp" required autocomplete="no_hp" autofocus>
 
                         @error('no_hp')
@@ -78,5 +74,9 @@
                 </div>
             </form>
         </div>
+    </div>
+    <div class="text-left mb-4">
+        <a href="{{ url('admin/list-admin') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>
+            Kembali</a>
     </div>
 @endsection

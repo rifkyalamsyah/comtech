@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div>
                         <a href="{{ url('admin/tambah-admin') }}" class="btn btn-secondary mb-3"><i
-                                class="fa fa-plus"></i>Tambah Admin</a>
+                                class="fa fa-plus"></i> Tambah Admin</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table">

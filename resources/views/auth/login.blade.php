@@ -90,6 +90,11 @@
                                         <h3 class="">Sign in</h3>
                                     </div>
                                     <div class="form-body">
+                                        @if ($message = Session::get('error'))
+                                            <div class="alert alert-danger">
+                                                <small>{{ $message }}</small>
+                                            </div>
+                                        @endif
                                         <form class="row g-3" action="{{ route('login') }}" method="post">
                                             @csrf
                                             <div class="col-12">

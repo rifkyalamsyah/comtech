@@ -11,6 +11,7 @@ use App\Http\Controllers\A_BarangController;
 use App\Http\Controllers\A_PenggunaController;
 use App\Http\Controllers\A_ProfileController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\A_PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::get('pesan/{id}', [PesanController::class, 'index'])->name('pesan');
 
 // pesan barang
 Route::post('pesan/{id}', [PesanController::class, 'pesan']);
+//pesanan diterima
+Route::post('pesan/pesanan-diterima/{id}', [PesanController::class, 'pesan_diterima']);
 
 // Check out
 Route::get('check-out', [PesanController::class, 'check_out']);
@@ -57,6 +60,7 @@ Route::post('profile', [ProfileController::class, 'update']);
 Route::get('history', [HistoryController::class, 'index']);
 // detail history
 Route::get('history/{id}', [HistoryController::class, 'detail']);
+
 
 //Admin area -----------------------------------------------------------------------------
 
@@ -88,3 +92,22 @@ Route::get('admin/barang', [A_BarangController::class, 'list'])->name('barang');
 Route::get('admin/barang/{id}', [A_BarangController::class, 'edit']);
 Route::post('admin/barang/{id}', [A_BarangController::class, 'update']);
 Route::delete('admin/barang/{id}', [A_BarangController::class, 'delete']);
+
+//Pesanan
+Route::get('admin/pesanan', [A_PesananController::class, 'index']);
+Route::get('admin/pesanan/{id}', [A_PesananController::class, 'detail']);
+Route::post('admin/pesanan/{id}', [A_PesananController::class, 'konfirmasi']);
+
+//Pesanan Dibayar
+Route::get('admin/pesanan-dibayar', [A_PesananController::class, 'dibayar']);
+Route::get('admin/pesanan-dibayar/{id}', [A_PesananController::class, 'proses_pesanan']);
+Route::post('admin/pesanan-dibayar/{id}', [A_PesananController::class, 'kirim_pesanan']);
+
+//Pesanan Dikirim
+Route::get('admin/pesanan-dikirim', [A_PesananController::class, 'dikirim']);
+Route::get('admin/pesanan-dikirim/{id}', [A_PesananController::class, 'detail_dikirim']);
+
+
+//Pesanan Diterima
+Route::get('admin/pesanan-selesai', [A_PesananController::class, 'selesai']);
+Route::get('admin/pesanan-selesai/{id}', [A_PesananController::class, 'detail_pesanan']);

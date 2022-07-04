@@ -86,8 +86,23 @@
                                         Barang</a></li>
                             </ul>
                         </li>
-                        <li><a class="nav-link" href="#"><i class="fas fa-cart-shopping"></i>
-                                <span>Pesanan</span></a>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                    class="fas fa-cart-shopping"></i> <span>Pesanan</span></a>
+                            <ul class="dropdown-menu">
+                                <li class=""><a class="nav-link" href="{{ url('admin/pesanan') }}">Daftar
+                                        Pesanan</a>
+                                </li>
+                                <li class=""><a class="nav-link"
+                                        href="{{ url('admin/pesanan-dibayar') }}">Dibayar</a>
+                                </li>
+                                <li class=""><a class="nav-link"
+                                        href="{{ url('admin/pesanan-dikirim') }}">Dikirim</a>
+                                </li>
+                                <li class=""><a class="nav-link"
+                                        href="{{ url('admin/pesanan-selesai') }}">Selesai</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
 

@@ -161,4 +161,12 @@ class PesanController extends Controller
         Alert::success('Success', 'Pesanan Berhasil Check Out');
         return redirect('history/' . $pesanan_id);
     }
+    public function pesan_diterima($id)
+    {
+        $pesanan = Pesanan::find($id);
+        $pesanan->status = 4;
+        $pesanan->updated_at = Carbon::now();
+        $pesanan->save();
+        return redirect('history');
+    }
 }

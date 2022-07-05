@@ -15,6 +15,7 @@ class A_PenggunaController extends Controller
         $this->middleware('auth');
         $this->middleware('isAdmin');
     }
+
     // Admin Controller
 
     public function admin()
@@ -27,6 +28,7 @@ class A_PenggunaController extends Controller
         return view('admin.pengguna.admin.index', compact('users'), $data);
     }
 
+
     public function tambah_admin()
     {
         $data = [
@@ -35,6 +37,8 @@ class A_PenggunaController extends Controller
 
         return view('admin.pengguna.admin.tambah', $data);
     }
+
+
     public function add_admin()
     {
         $this->validate(request(), [
@@ -53,8 +57,11 @@ class A_PenggunaController extends Controller
 
         User::create($user);
 
-        return redirect('admin/list-admin')->with('success', 'Admin berhasil ditambahkan');
+        // sweet alert
+        Alert::success('Success', 'Data berhasil ditambahkan');
+        return redirect('admin/list-admin');
     }
+
 
     public function edit_admin()
     {
@@ -92,13 +99,20 @@ class A_PenggunaController extends Controller
             $user->password = bcrypt(request('password'));
             $user->save();
         }
-        return redirect('admin/list-admin')->with('success', 'Admin berhasil diubah');
+
+        // sweet alert
+        Alert::success('Success', 'Data berhasil diupdate');
+        return redirect('admin/list-admin');
     }
+
 
     public function delete_admin()
     {
         $user = User::find(request('id'));
         $user->delete();
+
+        // sweet alert
+        Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect('admin/list-admin')->with('success', 'Admin berhasil dihapus');
     }
 
@@ -114,10 +128,15 @@ class A_PenggunaController extends Controller
 
         return view('admin.pengguna.member.index', compact('users'), $data);
     }
+
+
     public function delete_member()
     {
         $user = User::find(request('id'));
         $user->delete();
-        return redirect('admin/list-member')->with('success', 'Member berhasil dihapus');
+
+        // sweet alert
+        Alert::success('Delete', 'Data Berhasil Dihapus');
+        return redirect('admin/list-member');
     }
 }

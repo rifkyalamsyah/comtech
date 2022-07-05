@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use Illuminate\Support\Facades\File;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class A_BarangController extends Controller
 {
@@ -14,6 +16,7 @@ class A_BarangController extends Controller
         $this->middleware('isAdmin');
     }
 
+
     public function create()
     {
         $data = [
@@ -21,6 +24,7 @@ class A_BarangController extends Controller
         ];
         return view('admin.barang.add', $data);
     }
+
 
     public function store(Request $request)
     {
@@ -46,8 +50,12 @@ class A_BarangController extends Controller
         $barang->keterangan = $request->keterangan;
         $barang->gambar = $nama_gambar;
         $barang->save();
-        return redirect('admin/barang')->with('success', 'Data Berhasil Ditambahkan');
+
+        // sweet alert
+        Alert::success('Success', 'Data berhasil ditambahkan');
+        return redirect('admin/barang');
     }
+
 
     public function list()
     {
@@ -59,6 +67,7 @@ class A_BarangController extends Controller
         return view('admin.barang.list', compact('barangs'), $data);
     }
 
+
     public function edit($id)
     {
         $data = [
@@ -68,6 +77,7 @@ class A_BarangController extends Controller
         $barangs = Barang::find($id);
         return view('admin.barang.edit', compact('barangs'), $data);
     }
+
 
     public function update($id, Request $request)
     {
@@ -97,13 +107,21 @@ class A_BarangController extends Controller
         $barang->keterangan = $request->keterangan;
         $barang->gambar = $barang->gambar;
         $barang->save();
-        return redirect('admin/barang')->with('success', 'Data Berhasil Diubah');
+
+        // sweet alert
+        Alert::success('Success', 'Data berhasil diupdate');
+        return redirect('admin/barang');
     }
+
+
     public function delete($id)
     {
         $barang = Barang::find($id);
         File::delete('uploads/' . $barang->gambar);
         $barang->delete();
+
+        // sweet alert
+        Alert::success('Success', 'Data berhasil dihapus');
         return redirect('admin/barang')->with('success', 'Data Berhasil Dihapus');
     }
 }

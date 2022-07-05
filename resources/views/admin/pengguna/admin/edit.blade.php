@@ -43,7 +43,7 @@
                     <label for="no_hp" class="col-md-2 col-form-label text-md-end">No Hp</label>
 
                     <div class="col-md-5">
-                        <input id="no_hp" type="number" class="form-control @error('no_hp') is-invalid @enderror"
+                        <input id="no_hp" type="text" class="form-control @error('no_hp') is-invalid @enderror"
                             name="no_hp" required autocomplete="no_hp" autofocus value="{{ $user->no_hp }}">
 
                         @error('no_hp')

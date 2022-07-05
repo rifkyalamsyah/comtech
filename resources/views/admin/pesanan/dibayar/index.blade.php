@@ -42,4 +42,6 @@
     @else
         <h5>Tidak ada Data</h5>
     @endif
+    {{-- sweet alert --}}
+    @include('sweetalert::alert')
 @endsection

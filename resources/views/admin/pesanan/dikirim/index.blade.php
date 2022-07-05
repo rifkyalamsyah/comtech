@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-    @extends('layouts.admin')
-@section('content')
     <div class="row">
         <div class="col-md-12 mt-4">
             <div class="card">
@@ -42,6 +40,6 @@
             </div>
         </div>
     </div>
-@endsection
-
+    {{-- sweet alert --}}
+    @include('sweetalert::alert')
 @endsection

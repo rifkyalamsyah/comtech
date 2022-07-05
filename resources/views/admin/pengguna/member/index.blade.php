@@ -24,7 +24,7 @@
                                             class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i>
+                                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Anda yakin ingin menghapus data?')"><i class="fas fa-trash"></i>
                                                 Hapus</button>
                                         </form>
                                     </td>
@@ -36,4 +36,6 @@
             </div>
         </div>
     </div>
+    {{-- sweet alert --}}
+    @include('sweetalert::alert')
 @endsection

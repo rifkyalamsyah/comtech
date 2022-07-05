@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="text-left mb-4">
+        <a href="{{ url('admin/list-admin') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>
+            Kembali</a>
+    </div>
     <div class="card">
         <div class="card-body">
             <form method="POST" action="{{ url('admin/tambah-admin') }}">
@@ -74,9 +78,5 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="text-left mb-4">
-        <a href="{{ url('admin/list-admin') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>
-            Kembali</a>
     </div>
 @endsection

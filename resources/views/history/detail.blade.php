@@ -16,14 +16,22 @@
                 <a href="{{ url('history') }}" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Kembali</a>
             </div>
             <div class="col-md-12 mt-4">
-                <div class="alert alert-success" role="alert">
-                    <h3>Check Out Sukses</h3>
-                    <h5>Pesanan anda sudah berhasil di check out, selanjutnya untuk pembayaran silahkan transfer ke
-                        rekening : </h5>
-                    <h5><strong>Bank BCA : 12345678 - a/n PT.Comtech Indonesia</strong> dengan nominal : <strong>Rp.
-                            {{ number_format($pesanan->jumlah_harga + $pesanan->kode) }}</strong></h5>
-                    <h5></h5>
-                </div>
+                @if ($pesanan->status == 1)
+                    <div class="alert alert-success" role="alert">
+                        <h3>Check Out Sukses</h3>
+                        <h5>Pesanan anda sudah berhasil di check out, selanjutnya untuk pembayaran silahkan transfer ke
+                            rekening : </h5>
+                        <h5><strong>Bank BCA : 12345678 - a/n PT.Comtech Indonesia</strong> dengan nominal : <strong>Rp.
+                                {{ number_format($pesanan->jumlah_harga + $pesanan->kode) }}</strong></h5>
+                        <h5></h5>
+                    </div>
+                @elseif ($pesanan->status == 2)
+                    <div class="alert alert-success" role="alert">
+                        <h3>Pesanan Diproses</h3>
+                        <h5>Pembayaran sudah kami terima, selanjutnya anda tinggal menunggu pesanan anda dikirim ke
+                            alamat anda</h5>
+                    </div>
+                @endif
             </div>
             <div class="col-md-12 mt-4">
                 <div class="card">
@@ -31,7 +39,13 @@
                         <h3><i class="fa fa-shopping-cart"></i> Detail Pemesanan</h3>
                         @if (!empty($pesanan))
                             <div class="alert alert-secondary" role="alert">
-                                Tanggal Pesan: <strong>{{ $pesanan->tanggal }}</strong>
+                                @if ($pesanan->status == 1)
+                                    Tanggal Pesan: <strong>{{ $pesanan->tanggal }}</strong>
+                                @elseif ($pesanan->status == 2)
+                                    Tanggal Bayar: <strong>{{ $pesanan->updated_at }}</strong>
+                                @elseif ($pesanan->status == 4)
+                                    Diterima pada: <strong>{{ $pesanan->updated_at }}</strong>
+                                @endif
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -55,7 +69,8 @@
                                                         width="100" alt="barang">
                                                 </td>
                                                 <td>{{ $pesanan_detail->barang->nama_barang }}</td>
-                                                <td align="left">Rp. {{ number_format($pesanan_detail->barang->harga) }}
+                                                <td align="left">Rp.
+                                                    {{ number_format($pesanan_detail->barang->harga) }}
                                                 </td>
                                                 <td align="right">{{ $pesanan_detail->jumlah }} Barang</td>
                                                 <td align="right">Rp. {{ number_format($pesanan_detail->jumlah_harga) }}
@@ -83,12 +98,26 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                @if ($pesanan->status == 2 || $pesanan->status == 4)
+                                    <hr style="height:1px;border:none;color:#6a6a6a;background-color:#6a6a6a;">
+                                    <div class="pl-4">
+                                        <h5><i class="fa fa-user"></i> Informasi Penerima</h5>
+                                        <br>
+                                        <p>
+                                            <strong>Nama Penerima : </strong>{{ Auth::user()->name }}<br>
+                                            <strong>Alamat : </strong>{{ Auth::user()->alamat }}<br>
+                                            <strong>No. HP : </strong>{{ Auth::user()->no_hp }}<br>
+                                            <strong>Email : </strong>{{ Auth::user()->email }}<br>
+                                        </p>
+                                    </div>
+                                @endif
                             </div>
-                        @endif
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
+    </div>
     </div>
     @include('sweetalert::alert')
 @endsection

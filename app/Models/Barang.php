@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     // Relasion
     public function pesanan_detail()

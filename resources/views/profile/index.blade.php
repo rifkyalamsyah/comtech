@@ -127,7 +127,7 @@
                                 <div class="col-md-4">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                         autocomplete="new-password">
+                                        autocomplete="new-password" placeholder="Lewati jika tidak ingin diubah!">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -143,7 +143,7 @@
 
                                 <div class="col-md-4">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation"  autocomplete="new-password">
+                                        name="password_confirmation" autocomplete="new-password" placeholder="Lewati jika tidak ingin diubah!">
                                 </div>
                             </div>
 

@@ -18,13 +18,18 @@ class PesanController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('isMember');
     }
 
 
     public function index($id)
     {
         $barang = Barang::where('id', $id)->first();
-        return view('pesan.index', compact('barang'));
+        $data =
+            [
+                'produk' => $barang->nama_barang
+            ];
+        return view('pesan.index', compact('barang'), $data);
     }
 
 
@@ -93,14 +98,18 @@ class PesanController extends Controller
 
     public function check_out()
     {
+        $data =
+            [
+                'title' => 'Check Out'
+            ];
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
         // validasi
         if (!empty($pesanan)) {
             $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
-            return view('pesan.check_out', compact('pesanan', 'pesanan_details'));
+            return view('pesan.check_out', compact('pesanan', 'pesanan_details'), $data);
         } else {
             Alert::warning('Pesanan Kosong', 'Anda Belum Memesan Barang');
-            return view('pesan.check_out', compact('pesanan'));
+            return view('pesan.check_out', compact('pesanan'), $data);
         }
     }
 
@@ -150,6 +159,19 @@ class PesanController extends Controller
 
         // sweet alert
         Alert::success('Success', 'Pesanan Berhasil Check Out');
-        return redirect('history/'. $pesanan_id);
+        return redirect('history/' . $pesanan_id);
+    }
+
+    
+    public function pesan_diterima($id)
+    {
+        $pesanan = Pesanan::find($id);
+        $pesanan->status = 4;
+        $pesanan->updated_at = Carbon::now();
+        $pesanan->save();
+
+        // sweet alert
+        Alert::success('Success', 'Pesanan Berhasil Diterima');
+        return redirect('history');
     }
 }

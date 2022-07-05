@@ -25,7 +25,7 @@
                                         <td>No</td>
                                         <td>Tanggal</td>
                                         <td>Status</td>
-                                        <td>Jumlah Status</td>
+                                        <td>Jumlah</td>
                                         <td>Action</td>
                                     </tr>
                                 </thead>
@@ -38,14 +38,33 @@
                                             <td>
                                                 @if ($pesanan->status == 1)
                                                     Sudah Pesan & Belum Bayar
-                                                @else
-                                                    Sudah Bayar
+                                                @elseif ($pesanan->status == 2)
+                                                    Sudah Bayar, Pesanan Diproses
+                                                @elseif ($pesanan->status == 3)
+                                                    Pesanan Dikirim
+                                                @elseif ($pesanan->status == 4)
+                                                    Selesai
                                                 @endif
                                             </td>
                                             <td>Rp. {{ number_format($pesanan->jumlah_harga + $pesanan->kode) }}</td>
                                             <td>
-                                                <a href="{{ url('history') }}/{{ $pesanan->id }}"
-                                                    class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
+                                                @if ($pesanan->status == 3)
+                                                    <a href="#" class="btn btn-success"
+                                                        onclick="event.preventDefault(); document.getElementById('terima').submit();"><i
+                                                            class="fa fa-check"></i>
+                                                        Pesanan
+                                                        Diterima</a>
+                                                    <form id="terima"
+                                                        action="{{ url('pesan/pesanan-diterima') }}/{{ $pesanan->id }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="status" value="4">
+                                                    </form>
+                                                @else
+                                                    <a href="{{ url('history') }}/{{ $pesanan->id }}"
+                                                        class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
+                                                @endif
+
                                             </td>
                                         </tr>
                                     @endforeach

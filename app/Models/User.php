@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'no_hp',
+        'is_admin',
     ];
 
     /**
@@ -43,10 +45,9 @@ class User extends Authenticatable
     ];
 
 
-    // Relasion 
+    // Relasion
     public function pesanan()
     {
         return $this->hasMany('App\Pesanan', 'user_id', 'id');
     }
-    
 }
